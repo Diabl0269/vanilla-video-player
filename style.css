@@ -1,0 +1,139 @@
+:root {
+  --text-animation-time: 6s;
+}
+
+.container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.videoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.video {
+  width: 50%;
+  height: 50%;
+}
+
+@keyframes videoExitAnimation {
+  100% {
+    transform: translatex(150px);
+  }
+}
+
+.videoExitAnimation {
+  animation: videoExitAnimation 4s linear;
+}
+
+@keyframes videoIndex {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.videoTextContainer {
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+}
+
+.videoIndex {
+  color: white;
+  padding: 10px;
+  background-color: #21c1dd;
+  animation-name: videoIndex;
+  animation-duration: var(--text-animation-time);
+  opacity: 0;
+}
+
+@keyframes videoDescription {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.videoDescription {
+  padding: 10px;
+  animation-name: videoDescription;
+  animation-duration: var(--text-animation-time);
+  opacity: 0;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.button {
+  margin: 16px;
+  cursor: pointer;
+}
+
+.buttonsContainer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 45%;
+}
+
+.playButton {
+  opacity: 0;
+  background-image: url(http://clipart-library.com/images_k/white-play-button-transparent/white-play-button-transparent-21.png);
+  background-repeat: no-repeat;
+  width: 70px;
+  height: 70px;
+  margin: auto;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+}
+
+.appear:hover {
+  opacity: 1;
+  transition: 0.4s ease;
+}
+
+.arrow {
+  opacity: 0;
+  border: solid #edf6ff;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  padding: 3px;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
