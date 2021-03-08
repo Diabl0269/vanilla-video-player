@@ -1,5 +1,5 @@
 :root {
-  --text-animation-time: 6s;
+  --text-animation-time: 8s;
   --video-animation-time: 0.8s;
 }
 
@@ -10,7 +10,7 @@
   flex-direction: column;
 }
 
-.videoContainer {
+.video-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,95 +24,53 @@
   height: 50%;
 }
 
-.absolutePosition {
+.absolute-position {
   position: absolute;
 }
 
-@keyframes videoAppear {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(2);
-  }
+.video-appear {
+  animation: video-appear var(--video-animation-time) ease;
 }
 
-@keyframes videoExitLeft {
-  100% {
-    transform: translatex(-120%);
-  }
+.video-exit-right {
+  animation: video-exit-right var(--video-animation-time) linear;
 }
 
-@keyframes videoExitRight {
-  100% {
-    transform: translatex(120%);
-  }
+.video-exit-left {
+  animation: video-exit-left var(--video-animation-time) linear;
 }
 
-.videoAppear {
-  animation: videoAppear var(--video-animation-time) ease;
-}
-
-.videoExitRight {
-  animation: videoExitRight var(--video-animation-time) linear;
-}
-
-.videoExitLeft {
-  animation: videoExitLeft var(--video-animation-time) linear;
-}
-
-@keyframes videoIndex {
-  0% {
-    opacity: 0;
-  }
-  30% {
-    opacity: 1;
-  }
-  75% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-.videoTextContainer {
+.video-text-container {
   pointer-events: none;
   display: flex;
   align-items: center;
   position: absolute;
   bottom: 0;
+  overflow: hidden;
+  margin: 10px;
 }
 
-.videoIndex {
+.video-index {
   color: white;
   padding: 10px;
   background-color: #21c1dd;
-  animation: videoIndex var(--text-animation-time) ease;
-  opacity: 0;
+  animation: video-index var(--text-animation-time) ease;
+  margin: 0;
+  transform: translateY(100%);
 }
 
-@keyframes videoDescription {
-  0% {
-    opacity: 0;
-  }
-  60% {
-    opacity: 1;
-  }
-  75% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+.video-index-text {
+  margin: 0;
+  animation: video-index-text var(--text-animation-time) ease;
 }
 
-.videoDescription {
+.video-description {
   padding: 10px;
-  animation: videoDescription var(--text-animation-time) ease;
-  opacity: 0;
+  animation: video-description var(--text-animation-time) ease;
   color: white;
   background-color: rgba(0, 0, 0, 0.7);
+  margin: 0;
+  transform: translateX(-100%);
 }
 
 .button {
@@ -120,14 +78,14 @@
   cursor: pointer;
 }
 
-.buttonsContainer {
+.buttons-container {
   position: absolute;
   display: flex;
   align-items: center;
   width: 70%;
 }
 
-.playButton {
+.play-button {
   opacity: 0;
   background-image: url(http://clipart-library.com/images_k/white-play-button-transparent/white-play-button-transparent-21.png);
   background-repeat: no-repeat;
@@ -139,7 +97,7 @@
   cursor: pointer;
 }
 
-.buttonAppear:hover {
+.button-appear:hover {
   opacity: 1;
   transition: 0.4s ease;
 }
@@ -165,4 +123,77 @@
 .left {
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+@keyframes video-appear {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(2);
+  }
+}
+
+@keyframes video-exit-left {
+  100% {
+    transform: translatex(-120%);
+  }
+}
+
+@keyframes video-exit-right {
+  100% {
+    transform: translatex(120%);
+  }
+}
+
+@keyframes video-index {
+  0% {
+    transform: translateY(100%);
+  }
+  25% {
+    transform: translateY(0);
+  }
+  90% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes video-index-text {
+  0% {
+    transform: scale(0);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  35% {
+    transform: scale(1);
+  }
+  90% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes video-description {
+  25% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(0);
+  }
+  90% {
+    transform: translateX(-100%);
+  }
 }

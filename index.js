@@ -15,6 +15,7 @@ const init = () => {
   let video = document.getElementById("video");
 
   const videoIndex = document.getElementById("videoIndex");
+  const videoIndexText = document.getElementById("videoIndexText");
   const videoDescription = document.getElementById("videoDescription");
 
   const setVideoData = (videoToSet) => {
@@ -32,32 +33,32 @@ const init = () => {
     const newVideoEl = document.createElement("video");
 
     video.addEventListener("animationend", () => {
-      console.log("animated");
       video.remove();
       video = newVideoEl;
     });
 
     // Set the new video
-    newVideoEl.addEventListener("animationend", () => {
-      console.log("animated new");
-      newVideoEl.classList.remove("absolutePosition");
-    });
+    newVideoEl.addEventListener("animationend", () =>
+      newVideoEl.classList.remove("absolute-position")
+    );
 
-    newVideoEl.classList.add("video", "videoAppear", "absolutePosition");
+    newVideoEl.classList.add("video", "video-appear", "absolute-position");
 
     setVideoData(newVideoEl);
     videoContainer.insertBefore(newVideoEl, videoContainer.childNodes[0]);
 
-    video.classList.add(`videoExit${direction}`);
+    video.classList.add(`video-exit-${direction}`);
 
     // Restart text animation
-    videoDescription.classList.remove("videoDescription");
-    videoIndex.classList.remove("videoIndex");
+    videoDescription.classList.remove("video-description");
+    videoIndex.classList.remove("video-index");
+    videoIndexText.classList.remove("video-index-text");
 
     void videoIndex.offsetWidth;
 
-    videoIndex.classList.add("videoIndex");
-    videoDescription.classList.add("videoDescription");
+    videoIndex.classList.add("video-index");
+    videoDescription.classList.add("video-description");
+    videoIndexText.classList.add("video-index-text");
 
     if (videoOn) {
       newVideoEl.play();
@@ -70,7 +71,7 @@ const init = () => {
     } else {
       currentVideoIndex++;
     }
-    handleVideoChange("Right");
+    handleVideoChange("right");
   };
 
   const decrementVideo = () => () => {
@@ -79,7 +80,7 @@ const init = () => {
     } else {
       currentVideoIndex--;
     }
-    handleVideoChange("Left");
+    handleVideoChange("left");
   };
 
   document.getElementById("rightButton").onclick = incrementVideo(video);
@@ -97,7 +98,7 @@ const init = () => {
     videoOn = !videoOn;
   };
 
-  document.getElementById("playButton").onclick = handlePlay;
+  document.getElementById("play-button").onclick = handlePlay;
 };
 
 window.onload = init;

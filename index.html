@@ -5,16 +5,20 @@
   </head>
   <body>
     <div class="container">
-      <div class="videoContainer" id="videoContainer">
+      <div class="video-container" id="videoContainer">
         <video class="video" id="video"></video>
-        <div class="buttonsContainer">
-          <button class="arrow left buttonAppear" id="leftArrow"></button>
-          <div class="playButton buttonAppear" id="playButton"></div>
-          <button class="arrow right buttonAppear" id="rightArrow"></button>
+        <div class="buttons-container">
+          <button class="arrow left button-appear" id="leftArrow"></button>
+          <div class="play-button button-appear" id="play-button"></div>
+          <button class="arrow right button-appear" id="rightArrow"></button>
         </div>
-        <div class="videoTextContainer">
-          <p class="videoIndex" id="videoIndex"></p>
-          <p class="videoDescription" id="videoDescription"></p>
+        <div class="video-text-container">
+          <div id="videoIndex" class="video-index">
+            <p id="videoIndexText" class="video-index-text"></p>
+          </div>
+          <div class="overflow-hidden">
+            <p class="video-description" id="videoDescription"></p>
+          </div>
         </div>
       </div>
       <div>
