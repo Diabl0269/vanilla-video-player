@@ -12,7 +12,23 @@ const init = () => {
   // Video index to show the current video
   let currentVideoIndex = 0;
 
-  const video = document.getElementById("video");
+  let video = document.getElementById("video");
+
+  const videoContainer = document.getElementById("videoContainer");
+
+  function x() {
+    // video.classList.remove("absolutePosition");
+    const newVideo = document.createElement("video");
+    newVideo.classList.add("video", "videoAppear");
+    newVideo.src = videos[2].src;
+    videoContainer.insertBefore(newVideo, videoContainer.childNodes[0]);
+    video.remove();
+    video = videoContainer.childNodes[0];
+  }
+
+  video.addEventListener("animationend", x);
+  //   video.addEventListener("animationend", () => video.remove());
+
   const videoIndex = document.getElementById("videoIndex");
   const videoDescription = document.getElementById("videoDescription");
 

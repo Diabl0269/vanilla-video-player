@@ -1,5 +1,6 @@
 :root {
   --text-animation-time: 6s;
+  --video-animation-time: 0.8s;
 }
 
 .container {
@@ -14,21 +15,40 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  width: 80%;
+  overflow-x: hidden;
 }
 
 .video {
-  width: 50%;
+  width: 80%;
   height: 50%;
 }
 
-@keyframes videoExitAnimation {
+.absolutePosition {
+  position: absolute;
+}
+
+@keyframes videoAppear {
+  0% {
+    transform: scale(0);
+  }
   100% {
-    transform: translatex(150px);
+    transform: scale(1);
   }
 }
 
-.videoExitAnimation {
-  animation: videoExitAnimation 4s linear;
+.videoAppear {
+  animation: videoAppear var(--video-animation-time) ease;
+}
+
+@keyframes videoExit {
+  100% {
+    transform: translatex(120%);
+  }
+}
+
+.videoExit {
+  animation: videoExit var(--video-animation-time) linear;
 }
 
 @keyframes videoIndex {
@@ -58,8 +78,7 @@
   color: white;
   padding: 10px;
   background-color: #21c1dd;
-  animation-name: videoIndex;
-  animation-duration: var(--text-animation-time);
+  animation: videoIndex var(--text-animation-time) ease;
   opacity: 0;
 }
 
@@ -80,8 +99,7 @@
 
 .videoDescription {
   padding: 10px;
-  animation-name: videoDescription;
-  animation-duration: var(--text-animation-time);
+  animation: videoDescription var(--text-animation-time) ease;
   opacity: 0;
   color: white;
   background-color: rgba(0, 0, 0, 0.7);
@@ -96,7 +114,7 @@
   position: absolute;
   display: flex;
   align-items: center;
-  width: 45%;
+  width: 70%;
 }
 
 .playButton {
@@ -111,7 +129,7 @@
   cursor: pointer;
 }
 
-.appear:hover {
+.buttonAppear:hover {
   opacity: 1;
   transition: 0.4s ease;
 }
