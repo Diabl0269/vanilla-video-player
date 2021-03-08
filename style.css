@@ -41,21 +41,31 @@
   animation: videoAppear var(--video-animation-time) ease;
 }
 
-@keyframes videoExit {
+@keyframes videoExitRight {
   100% {
     transform: translatex(120%);
   }
 }
 
-.videoExit {
-  animation: videoExit var(--video-animation-time) linear;
+.videoExitRight {
+  animation: videoExitRight var(--video-animation-time) linear;
+}
+
+@keyframes videoExitLeft {
+  100% {
+    transform: translatex(-120%);
+  }
+}
+
+.videoExitLeft {
+  animation: videoExitLeft var(--video-animation-time) linear;
 }
 
 @keyframes videoIndex {
   0% {
     opacity: 0;
   }
-  20% {
+  30% {
     opacity: 1;
   }
   75% {
@@ -86,7 +96,7 @@
   0% {
     opacity: 0;
   }
-  50% {
+  60% {
     opacity: 1;
   }
   75% {

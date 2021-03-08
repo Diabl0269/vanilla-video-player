@@ -14,33 +14,38 @@ const init = () => {
 
   let video = document.getElementById("video");
 
-  const videoContainer = document.getElementById("videoContainer");
-
-  function x() {
-    // video.classList.remove("absolutePosition");
-    const newVideo = document.createElement("video");
-    newVideo.classList.add("video", "videoAppear");
-    newVideo.src = videos[2].src;
-    videoContainer.insertBefore(newVideo, videoContainer.childNodes[0]);
-    video.remove();
-    video = videoContainer.childNodes[0];
-  }
-
-  video.addEventListener("animationend", x);
-  //   video.addEventListener("animationend", () => video.remove());
-
   const videoIndex = document.getElementById("videoIndex");
   const videoDescription = document.getElementById("videoDescription");
 
-  const handleVideoChange = () => {
+  const setVideoData = (videoToSet) => {
     const newVideo = videos[currentVideoIndex];
+    videoToSet.src = newVideo.src;
 
-    // Set the new video
-    video.src = newVideo.src;
-
-    // Set the video text
     videoDescription.innerHTML = newVideo.description;
     videoIndex.innerHTML = currentVideoIndex + 1;
+  };
+  setVideoData(video);
+
+  const videoContainer = document.getElementById("videoContainer");
+
+  const handleVideoChange = (direction) => {
+    const newVideoEl = document.createElement("video");
+    newVideoEl.classList.add("video", "videoAppear", "absolutePosition");
+
+    setVideoData(newVideoEl);
+    videoContainer.insertBefore(newVideoEl, videoContainer.childNodes[0]);
+
+    // Set the new video
+    video.addEventListener(
+      "animationed",
+      (() => {
+        console.log("animated");
+        video.remove();
+        newVideoEl.classList.remove("absolutePosition");
+        video = newVideoEl;
+      })()
+    );
+    video.classList.add(`videoExit${direction}`);
 
     // Restart text animation
     videoDescription.classList.remove("videoDescription");
@@ -56,7 +61,7 @@ const init = () => {
     }
   };
 
-  handleVideoChange();
+  //   handleVideoChange();
 
   const incrementVideo = () => () => {
     if (currentVideoIndex + 1 === videos.length) {
@@ -64,7 +69,7 @@ const init = () => {
     } else {
       currentVideoIndex++;
     }
-    handleVideoChange();
+    handleVideoChange("Right");
   };
 
   const decrementVideo = () => () => {
@@ -73,7 +78,7 @@ const init = () => {
     } else {
       currentVideoIndex--;
     }
-    handleVideoChange();
+    handleVideoChange("Left");
   };
 
   document.getElementById("rightButton").onclick = incrementVideo(video);
