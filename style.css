@@ -33,12 +33,14 @@
     transform: scale(0);
   }
   100% {
-    transform: scale(1);
+    transform: scale(2);
   }
 }
 
-.videoAppear {
-  animation: videoAppear var(--video-animation-time) ease;
+@keyframes videoExitLeft {
+  100% {
+    transform: translatex(-120%);
+  }
 }
 
 @keyframes videoExitRight {
@@ -47,14 +49,12 @@
   }
 }
 
-.videoExitRight {
-  animation: videoExitRight var(--video-animation-time) linear;
+.videoAppear {
+  animation: videoAppear var(--video-animation-time) ease;
 }
 
-@keyframes videoExitLeft {
-  100% {
-    transform: translatex(-120%);
-  }
+.videoExitRight {
+  animation: videoExitRight var(--video-animation-time) linear;
 }
 
 .videoExitLeft {
@@ -145,6 +145,7 @@
 }
 
 .arrow {
+  outline: none;
   opacity: 0;
   border: solid #edf6ff;
   border-width: 0 3px 3px 0;

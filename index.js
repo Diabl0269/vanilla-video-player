@@ -30,21 +30,24 @@ const init = () => {
 
   const handleVideoChange = (direction) => {
     const newVideoEl = document.createElement("video");
+
+    video.addEventListener("animationend", () => {
+      console.log("animated");
+      video.remove();
+      video = newVideoEl;
+    });
+
+    // Set the new video
+    newVideoEl.addEventListener("animationend", () => {
+      console.log("animated new");
+      newVideoEl.classList.remove("absolutePosition");
+    });
+
     newVideoEl.classList.add("video", "videoAppear", "absolutePosition");
 
     setVideoData(newVideoEl);
     videoContainer.insertBefore(newVideoEl, videoContainer.childNodes[0]);
 
-    // Set the new video
-    video.addEventListener(
-      "animationed",
-      (() => {
-        console.log("animated");
-        video.remove();
-        newVideoEl.classList.remove("absolutePosition");
-        video = newVideoEl;
-      })()
-    );
     video.classList.add(`videoExit${direction}`);
 
     // Restart text animation
@@ -57,11 +60,9 @@ const init = () => {
     videoDescription.classList.add("videoDescription");
 
     if (videoOn) {
-      video.play();
+      newVideoEl.play();
     }
   };
-
-  //   handleVideoChange();
 
   const incrementVideo = () => () => {
     if (currentVideoIndex + 1 === videos.length) {
